@@ -341,7 +341,6 @@ BRTransaction *BRTransactionCopy(const BRTransaction *tx)
     BRTransaction *cpy = BRTransactionNew();
     BRTxInput *inputs = cpy->inputs;
     BRTxOutput *outputs = cpy->outputs;
-
     assert(tx != NULL);
     *cpy = *tx;
     cpy->inputs = inputs;
@@ -353,7 +352,6 @@ BRTransaction *BRTransactionCopy(const BRTransaction *tx)
                               tx->inputs[i].script, tx->inputs[i].scriptLen,
                               tx->inputs[i].signature, tx->inputs[i].sigLen, tx->inputs[i].sequence);
     }
-
     for (size_t i = 0; i < tx->outCount; i++) {
         BRTransactionAddOutput(cpy, tx->outputs[i].amount, tx->outputs[i].script, tx->outputs[i].scriptLen);
     }
