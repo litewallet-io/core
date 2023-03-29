@@ -60,7 +60,11 @@
 #define _va_rest(first, ...) __VA_ARGS__
 #endif
 
+<<<<<<< HEAD
+#if LITECOIN_TESTNET
+=======
 #if BITCOIN_TESTNET
+>>>>>>> origin/main
 #define BR_CHAIN_PARAMS BRTestNetParams
 #else
 #define BR_CHAIN_PARAMS BRMainNetParams
@@ -328,12 +332,20 @@ int BRBech32Tests()
     char h[84];
     char *s, addr[91];
     size_t l;
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> origin/main
     s = "\x00\x14\x75\x1e\x76\xe8\x19\x91\x96\xd4\x54\x94\x1c\x45\xd1\xb3\xa3\x23\xf1\x43\x3b\xd6";
     l = BRBech32Decode(h, b, "BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4");
     if (l != 22 || strcmp(h, "bc") || memcmp(s, b, l))
         r = 0, fprintf(stderr, "\n***FAILED*** %s: BRBech32Decode() test 1", __func__);
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> origin/main
     l = BRBech32Decode(h, b, "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4");
     if (l != 22 || strcmp(h, "bc") || memcmp(s, b, l))
         r = 0, fprintf(stderr, "\n***FAILED*** %s: BRBech32Decode() test 2", __func__);
@@ -1050,7 +1062,7 @@ int BRKeyTests()
     BRKeySetPrivKey(&key, "S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy");
     BRKeyAddress(&key, addr.s, sizeof(addr));
     printf("privKey:S6c56bnXQiBjk9mqSYE7ykVQ7NzrRy = %s\n", addr.s);
-#if BITCOIN_TESTNET
+#if LITECOIN_TESTNET
     if (! BRAddressEq(&addr, "ms8fwvXzrCoyatnGFRaLbepSqwGRxVJQF1"))
         r = 0, fprintf(stderr, "***FAILED*** %s: BRKeySetPrivKey() test 1\n", __func__);
 #else
@@ -1065,7 +1077,7 @@ int BRKeyTests()
     BRKeySetPrivKey(&key, "SzavMBLoXU6kDrqtUVmffv");
     BRKeyAddress(&key, addr.s, sizeof(addr));
     printf("privKey:SzavMBLoXU6kDrqtUVmffv = %s\n", addr.s);
-#if BITCOIN_TESTNET
+#if LITECOIN_TESTNET
     if (! BRAddressEq(&addr, "mrhzp5mstA4Midx85EeCjuaUAAGANMFmRP"))
         r = 0, fprintf(stderr, "***FAILED*** %s: BRKeySetPrivKey() test 2\n", __func__);
 #else
@@ -1073,7 +1085,7 @@ int BRKeyTests()
         r = 0, fprintf(stderr, "***FAILED*** %s: BRKeySetPrivKey() test 2\n", __func__);
 #endif
 
-#if ! BITCOIN_TESTNET
+#if ! LITECOIN_TESTNET
     // uncompressed private key
     if (! BRPrivKeyIsValid("5Kb8kLf9zgWQnogidDA76MzPL6TsZZY36hWXMssSzNydYXYB9KF"))
         r = 0, fprintf(stderr, "***FAILED*** %s: BRPrivKeyIsValid() test 3\n", __func__);
@@ -1623,14 +1635,22 @@ int BRBIP32SequenceTests()
                      "banner amused fringe fox insect roast aunt prefer hollow basic ladder", NULL);
     BRBIP32BitIDKey(&key, dk.u8, sizeof(dk), 0, "http://bitid.bitcoin.blue/callback");
     BRKeyAddress(&key, addr.s, sizeof(addr));
+<<<<<<< HEAD
+#if LITECOIN_TESTNET
+=======
 #if BITCOIN_TESTNET
+>>>>>>> origin/main
     if (strncmp(addr.s, "mxZ2Dn9vcyNeKh9DNHZw6d6NrxeYCVNjc2", sizeof(addr)) != 0)
         r = 0, fprintf(stderr, "***FAILED*** %s: BRBIP32BitIDKey() test\n", __func__);
 #else
     if (strncmp(addr.s, "1J34vj4wowwPYafbeibZGht3zy3qERoUM1", sizeof(addr)) != 0)
         r = 0, fprintf(stderr, "***FAILED*** %s: BRBIP32BitIDKey() test\n", __func__);
 #endif
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> origin/main
     // TODO: XXX test BRBIP32SerializeMasterPrivKey()
     // TODO: XXX test BRBIP32SerializeMasterPubKey()
 
@@ -1805,6 +1825,34 @@ int BRTransactionTests()
     BRTransactionFree(tgt);
     BRTransactionFree(src);
     
+<<<<<<< HEAD
+    BRTransaction *src = BRTransactionNew ();
+    BRTransactionAddInput(src, inHash, 0, 1, script, scriptLen, NULL, 0, TXIN_SEQUENCE);
+    BRTransactionAddInput(src, inHash, 0, 1, script, scriptLen, NULL, 0, TXIN_SEQUENCE);
+    BRTransactionAddOutput(src, 1000000, script, scriptLen);
+    BRTransactionAddOutput(src, 1000000, script, scriptLen);
+    BRTransactionAddOutput(src, 1000000, script, scriptLen);
+
+    BRTransaction *tgt = BRTransactionCopy(src);
+    if (!BRTransactionEqual(tgt, src))
+        r = 0, fprintf(stderr, "\n***FAILED*** %s: BRTransactionCopy() test 1", __func__);
+
+    tgt->blockHeight++;
+    if (BRTransactionEqual(tgt, src)) // fail if equal
+        r = 0, fprintf(stderr, "\n***FAILED*** %s: BRTransactionCopy() test 2", __func__);
+
+    BRTransactionFree(tgt);
+    BRTransactionFree(src);
+
+    src = BRTransactionParse(buf4, len4);
+    tgt = BRTransactionCopy(src);
+    if (!BRTransactionEqual(tgt, src))
+        r = 0, fprintf(stderr, "\n***FAILED*** %s: BRTransactionCopy() test 3", __func__);
+    BRTransactionFree(tgt);
+    BRTransactionFree(src);
+
+=======
+>>>>>>> origin/main
     if (! r) fprintf(stderr, "\n                                    ");
     return r;
 }
@@ -2150,7 +2198,11 @@ int BRMerkleBlockTests()
     // TODO: XXX test BRMerkleBlockVerifyDifficulty()
     
     // TODO: test (CVE-2012-2459) vulnerability
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> origin/main
     BRMerkleBlock *c = BRMerkleBlockCopy(b);
 
     if (!BRMerkleBlockEqual(b, c))
@@ -2532,7 +2584,11 @@ int BRPaymentProtocolEncryptionTests()
     
     BRKeySetSecret(&senderKey, &uint256("0000000000000000000000000000000000000000000000000000000000000001"), 1);
     BRKeySetSecret(&receiverKey, &uint256("0000000000000000000000000000000000000000000000000000000000000002"), 1);
+<<<<<<< HEAD
+    
+=======
         
+>>>>>>> origin/main
     BRPaymentProtocolInvoiceRequest *req = BRPaymentProtocolInvoiceRequestNew(&senderKey, 0, NULL, NULL, 0, NULL, NULL,
                                                                               NULL, 0);
     
