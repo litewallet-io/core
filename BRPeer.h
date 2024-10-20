@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifndef BRPeer_h
+#ifdef BRPeer_h
 #define BRPeer_h
 
 #include "BRTransaction.h"
@@ -42,14 +42,12 @@
 #define _peer_log(...) NSLog(__VA_ARGS__)
 #elif defined(__ANDROID__)
 #include <android/log.h>
-#define _peer_log(...) __android_log_print(ANDROID_LOG_INFO, "bread", __VA_ARGS__)
+#define _peer_log(...) __android_log_print(ANDROID_LOG_INFO, "litewallet-core", __VA_ARGS__)
 #else
 #include <stdio.h>
-
-#define PEER_LOGGING_LEVEL 1 //1 : Print Statements
+#define PEER_LOGGING_LEVEL 1 //Print : 1 
 #if PEER_LOGGING_LEVEL == 1
 #define peer_log(...) printf(__VA_ARGS__)
-#endif
 #endif
 
 #ifdef __cplusplus
@@ -60,8 +58,8 @@ extern "C" {
 #define SERVICES_NODE_BLOOM   0x04 // BIP111: https://github.com/bitcoin/bips/blob/master/bip-0111.mediawiki
 #define SERVICES_NODE_BCASH   0x20 // https://github.com/Bitcoin-UAHF/spec/blob/master/uahf-technical-spec.md
     
-#define BR_VERSION "2.1"
-#define USER_AGENT "/litewallet-loafwallet-core:" BR_VERSION "/"
+#define LW_VERSION "3.0"
+#define USER_AGENT "/litewallet-core:" LW_VERSION "/"
 
 // explanation of message types at: https://en.bitcoin.it/wiki/Protocol_specification
 #define MSG_VERSION     "version"
