@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifdef BRPeer_h
+#ifndef BRPeer_h
 #define BRPeer_h
 
 #include "BRTransaction.h"
