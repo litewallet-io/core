@@ -39,8 +39,9 @@ extern "C" {
 //  1618643881      2036160         Sync starts in April 2018
 //  1619999000               Sync starts in April 2021
 
-#define RECENT_BLOCK_TIME 1524838967 //Added a shorter sync time for testing April 17 2021// 1464739200
-#define BIP39_CREATION_TIME 1464739200 // oldest possible BIP39 phrase creation time, seconds after unix epoch
+#define BIP39_CREATION_TIME 1464739200 // oldest possible BIP39 phrase creation time, Wednesday, June 1, 2016 12:00:00 AM
+#define MID_BLOCK_TIME 1524838967 //  4/27/2018 2:22:47 PM - Blockheight: 1411200
+#define RECENT_BLOCK_TIME 1618643881 // 4/17/2021 7:18:01 AM - Blockheight: 2036160
 #define BIP39_WORDLIST_COUNT 2048       // number of words in a BIP39 wordlist
 
 // returns number of bytes written to phrase including NULL terminator, or phraseLen needed if phrase is NULL
