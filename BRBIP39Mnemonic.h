@@ -35,7 +35,12 @@ extern "C" {
 // BIP39 is method for generating a deterministic wallet seed from a mnemonic phrase
 // https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
 
-#define BIP39_CREATION_TIME  1464739200 // oldest possible BIP39 phrase creation time, seconds after unix epoch
+//  Starting TIME   Sync block      Notes
+//  1618643881      2036160         Sync starts in April 2018
+//  1619999000               Sync starts in April 2021
+
+#define RECENT_BLOCK_TIME 1524838967 //Added a shorter sync time for testing April 17 2021// 1464739200
+#define BIP39_CREATION_TIME 1464739200 // oldest possible BIP39 phrase creation time, seconds after unix epoch
 #define BIP39_WORDLIST_COUNT 2048       // number of words in a BIP39 wordlist
 
 // returns number of bytes written to phrase including NULL terminator, or phraseLen needed if phrase is NULL
